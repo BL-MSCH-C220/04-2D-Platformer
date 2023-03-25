@@ -9,12 +9,14 @@ func _ready():
 		set_state(get_children()[0].name)
 
 func _physics_process(delta):
-	if state and state.has_method("physics_process"):
-		state.physics_process(delta)
+	if Global.playable: 
+		if state and state.has_method("physics_process"):
+			state.physics_process(delta)
 
 func _process(delta):
-	if state and state.has_method("process"):
-		state.process(delta)
+	if Global.playable:
+		if state and state.has_method("process"):
+			state.process(delta)
 
 func _unhandled_input(event):
 	if state and state.has_method("unhandled_input"):
